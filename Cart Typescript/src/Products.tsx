@@ -9,7 +9,7 @@ const Product=()=>{
 
     
 
-    const fetchProducts = async(URL)=>{
+    const fetchProducts = async(URL : string)=>{
      const res = await fetch (URL);
      const data = await res.json();
     setProducts(data)
@@ -25,7 +25,7 @@ const Product=()=>{
         Products?.length === 0 ?(
         <Loader/>
         ) : (
-  Products.map((item)=>{
+  Products.map((item:any)=>{
 
     return <div key={item.id} className="flex flex-wrap gap-12">
         
@@ -34,6 +34,7 @@ const Product=()=>{
         image={item.image}
         category={item.category}
         price={item.price}
+        id={item.id}
         />
     </div>
   })
