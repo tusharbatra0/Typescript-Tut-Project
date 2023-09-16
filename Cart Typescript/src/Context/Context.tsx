@@ -1,6 +1,7 @@
 import React, { createContext, useState } from "react";
+import { ReactNode } from "react";
 
-export const CartContext = createContext({});
+export const CartContext = createContext<CartContextProps | null>(null);
 
 export interface ClothingItem {
   category: string;
@@ -15,13 +16,15 @@ export interface ClothingItem {
   title: string;
 }
 
-interface CartContextProps {
-  cartItem: ClothingItem ;
-  setCartItems: React.Dispatch<React.SetStateAction<ClothingItem>> ;
+export interface CartContextProps {
+  cartItem: ClothingItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<ClothingItem[]>> ;
 }
-
-const CartContextProvider= ({ children } : any) => {
-  const [cartItem, setCartItems] = useState<ClothingItem[]>();
+interface CartContextProviderProps{
+  children : ReactNode
+}
+const CartContextProvider= ({ children } : CartContextProviderProps ) => {
+  const [cartItem, setCartItems] = useState<ClothingItem[]>([]);
   
   const contextValue: CartContextProps = {
     cartItem,

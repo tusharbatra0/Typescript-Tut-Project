@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { product } from "./config";
 import { useContext } from "react";
 import { CartContext } from "./Context/Context";
-import { product } from "./config";
+
 interface ClothingItem {
     category: string;
     description: string;
@@ -19,9 +20,7 @@ interface ClothingItem {
 
 const ViewProduct=()=>{
     const { id } = useParams();
-    const [cartItems, setCartItems] = useState<ClothingItem[]>([]);
-
-
+   const {cartItem , setCartItems} = useContext(CartContext)
     const[Productdata , setProductdata]=useState<ClothingItem>()
     
     // Call API
@@ -29,7 +28,7 @@ const ViewProduct=()=>{
         const apiURL = product(Number(id) );
         fetchProductdata(apiURL)
       }, [])
-
+console.log(cartItem)
     //   Function fetch
     const fetchProductdata = async(URL : string)=>{
         const res = await fetch(URL);
@@ -37,9 +36,11 @@ const ViewProduct=()=>{
         setProductdata(data)
       }
 
+      
       // Add to Cart
-      const addToCart = (product: ClothingItem) => {
-        setCartItems((prev: ClothingItem[]) => [...prev, product]);
+      const addToCart = (Productdata : ClothingItem) => {
+        setCartItems([...cartItem, Productdata]);
+        console.log("Working" )
       };
       
     
