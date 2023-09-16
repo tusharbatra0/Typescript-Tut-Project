@@ -1,11 +1,13 @@
 import { useEffect } from "react";
+import Loader from "./Loader";
 import SingleProduct from "./SingleProduct";
+import { productsApi } from "./config";
 import { useState } from "react";
 const Product=()=>{
     const [Products, setProducts] = useState([]);
     console.log(Products)
 
-    const productsApi = "https://fakestoreapi.com/products";
+    
 
     const fetchProducts = async(URL)=>{
      const res = await fetch (URL);
@@ -18,10 +20,15 @@ const Product=()=>{
 
     return(<>
     <div className='flex w-full flex-wrap gap-[70px] justify-center items-center' >
-  {
+  
+    {
+        Products?.length === 0 ?(
+        <Loader/>
+        ) : (
   Products.map((item)=>{
 
     return <div key={item.id} className="flex flex-wrap gap-12">
+        
         <SingleProduct
         key={item.id}
         image={item.image}
@@ -31,7 +38,7 @@ const Product=()=>{
     </div>
   })
 
-  }
+  )}
     </div>
     </>)
 }

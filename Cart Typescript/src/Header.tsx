@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+// import { Context } from "./Context/Context";
+// import { useContext } from "react";
+
 const Header=()=>{
 
+
+    // const num = useContext(Context)
     return(
         <>
         <div className="flex ">
@@ -17,7 +22,7 @@ const Header=()=>{
          </Link>
         </div>
 <button className="bg-[#2a83ab] border-black text-white ml-4 w-[140px]">
-    🛒Cart :-
+    🛒Cart :- 
 </button>
 
 </div>

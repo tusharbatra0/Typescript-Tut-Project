@@ -26,7 +26,7 @@ const appRouter = createBrowserRouter([
         element: <Contact />,
       },
       {
-        path: "/viewproduct/",
+        path: "/viewproduct/:id",
         element: <ViewProduct />,
       },
     ],
